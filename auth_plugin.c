@@ -117,7 +117,7 @@ int mosquitto_auth_unpwd_check(void *user_data, const char *username, const char
     res = PQexec(conn, stmt_w_user);
 
     // got result
-    if (PQresultStatus(res) == PGRES_TUPLES_OK) {
+    if (PQresultStatus(res) == PGRES_TUPLES_OK && PQntuples(res) == 1) {
 
         // DO MD5()
         unsigned char hash_ret[16];
